@@ -27,7 +27,7 @@ def upgrade() -> None:
         sa.Column("surname", sa.String(255)),
         sa.Column("email", sa.String(255), unique=True, nullable=False),
         sa.Column("email_verified_at", sa.DateTime()),
-        sa.Column("password", sa.String(255)),
+        sa.Column("password", sa.String(255), nullable=False),
         sa.Column("status", sa.Enum("active", "inactive", "blocked", "pending", name="user_status"), server_default="pending", nullable=False),
         sa.Column("created_at", sa.TIMESTAMP, server_default=sa.text("CURRENT_TIMESTAMP"), nullable=False),
         sa.Column("updated_at", sa.TIMESTAMP),
