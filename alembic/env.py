@@ -11,12 +11,12 @@ import os
 load_dotenv(dotenv_path=".env")
 
 # Retrieve database connection details from environment variables
-db_user = os.getenv("POSTGRES_USER")
-db_password = os.getenv("POSTGRES_PASSWORD")
-db_host = os.getenv("POSTGRES_HOST")
-db_port = os.getenv("POSTGRES_PORT")
-db_name = os.getenv("POSTGRES_DB")
-db_driver = os.getenv("POSTGRES_DRIVER")
+db_user = os.getenv("DB_USERNAME")
+db_password = os.getenv("DB_PASSWORD")
+db_host = os.getenv("DB_HOST")
+db_port = os.getenv("DB_PORT")
+db_name = os.getenv("DB_DATABASE")
+db_driver = os.getenv("DB_CONNECTION")
 # Build the SQLAlchemy connection URL dynamically
 connection_url = f"{db_driver}://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 
