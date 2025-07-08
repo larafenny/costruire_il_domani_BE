@@ -8,11 +8,3 @@ engine = create_engine(f"{config.DB_CONNECTION}://{config.DB_USERNAME}:{config.D
                        f"{config.DB_PORT}/{config.DB_DATABASE}")
 
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
