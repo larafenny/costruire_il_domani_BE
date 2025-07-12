@@ -26,16 +26,16 @@ class User(SQLModel, table=True):
         unique=True
     )
     email_verified_at: Optional[datetime] = Field(
-        ...,
         max_length=255,
-        unique=True
+        unique=True,
+        default=None
     )
     password: str = Field(
         ...,
         max_length=255
     )
     status: Optional[UserStatus] = Field(
-        default=UserStatus.PENDING
+        default=UserStatus.pending
     )
     created_at: Optional[datetime] = Field(
         default=None,
