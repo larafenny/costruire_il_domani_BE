@@ -1,4 +1,5 @@
 import base64
+import bcrypt
 import jwt
 from jwt.exceptions import PyJWTError
 
@@ -43,4 +44,15 @@ class JWTService:
             return True
 
         return False
+
+
+    def hash_password(self, plain_password: str) -> str:
+        # converting password to array of bytes
+        bytes = plain_password.encode('utf-8')
+
+        # generating the salt
+        salt = bcrypt.gensalt()
+
+        # Hashing the password
+        return bcrypt.hashpw(bytes, salt).decode("utf-8")
 
