@@ -1,9 +1,11 @@
 from fastapi import HTTPException, status, Response
 
+from src.services.jwt_service import JWTService
 from src.repositories.user_repository import UserRepository
+
 from src.schemas.v1.requests.login_request import LoginRequest
 from src.schemas.v1.responses.login_response import LoginResponse
-from src.services.jwt_service import JWTService
+from schemas.v1.responses.logout_response import LogoutResponse
 
 
 class AuthController:
@@ -30,9 +32,10 @@ class AuthController:
         )
 
         response.set_cookie(
-            key='access-token',
+            key='access_token',
             value=jwt_token.access_token,
             max_age=jwt_token.expiration,
+            path='/',
             secure=True,
             httponly=True
         )
@@ -40,4 +43,16 @@ class AuthController:
         return LoginResponse(
             response_code=status.HTTP_200_OK,
             message="Login successfully"
+        )
+
+    @staticmethod
+    def logout(response: Response):
+        response.set_cookie(
+            key='Access_token',
+            path='/'
+        )
+
+        return LogoutResponse(
+            response_code=status.HTTP_200_OK,
+            message="Logged out successfully"
         )

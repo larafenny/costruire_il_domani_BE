@@ -22,10 +22,9 @@ async def login(login_request: LoginRequest, response: Response,
         raise HTTPException(status_code=500, detail=str(e))
 
 
-
 @router.post('/logout')
-async def logout():
-    pass
+async def logout(response: Response):
+    return AuthController.logout(response)
 
 
 @router.post('/register')
