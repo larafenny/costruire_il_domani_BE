@@ -13,8 +13,8 @@ class Settings(BaseSettings):
     DB_USERNAME: str
     DB_PASSWORD: str
     DB_ROOT_PASSWORD: str
-    JWT_PRIVATE: str
-    JWT_PUBLIC: str
+    JWT_PRIVATE_KEY: str
+    JWT_PUBLIC_KEY: str
     JWT_ALGORITHM: str
     JWT_EXPIRATION_SEC: int
 

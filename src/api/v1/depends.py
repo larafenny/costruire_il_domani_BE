@@ -2,7 +2,7 @@ from typing import Generator
 from sqlmodel import Session
 from fastapi import Depends
 
-from src.services.database import SessionLocal
+from src.controllers.auth_controller import AuthController
 from src.repositories.user_repository import UserRepository
 from src.controllers.user_controller import UserController
 from src.services.jwt_service import JWTService
@@ -25,3 +25,8 @@ def get_user_repository(db: Session = Depends(get_db)) -> UserRepository:
 def get_user_controller(user_repository: UserRepository = Depends(get_user_repository),
                         jwt_service: JWTService = Depends(get_jwt_service)) -> UserController:
     return UserController(user_repository, jwt_service)
+
+
+def get_auth_controller(user_repository: UserRepository = Depends(get_user_repository),
+                        jwt_service: JWTService = Depends(get_jwt_service)) -> AuthController:
+    return AuthController(user_repository, jwt_service)
