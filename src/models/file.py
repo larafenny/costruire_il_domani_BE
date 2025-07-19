@@ -48,5 +48,6 @@ class File(SQLModel, table=True):
         default=FileStatus.active
     )
     created_at: Optional[datetime] = Field(
-        default=FileStatus.active
+        sa_column_kwargs={"server_default": "CURRENT_TIMESTAMP"},
+        default=None
     )

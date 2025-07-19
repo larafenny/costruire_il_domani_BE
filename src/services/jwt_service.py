@@ -1,3 +1,4 @@
+from fastapi import Request
 import base64
 import bcrypt
 import jwt
@@ -59,3 +60,11 @@ class JWTService:
     @staticmethod
     def verify_user_password(plain_password: str, hashed_password: str) -> bool:
         return bcrypt.checkpw(plain_password.encode("utf-8"), hashed_password.encode("utf-8"))
+
+    @staticmethod
+    def get_jwt_token_from_cookie(request: Request):
+        auth_token = request.headers.get('Authorization')
+        if auth_token:
+            return auth_token.split(' ')[1]
+        else:
+            return request.cookies.get("access_token")

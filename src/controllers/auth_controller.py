@@ -5,7 +5,7 @@ from src.repositories.user_repository import UserRepository
 
 from src.schemas.v1.requests.login_request import LoginRequest
 from src.schemas.v1.responses.login_response import LoginResponse
-from schemas.v1.responses.logout_response import LogoutResponse
+from src.schemas.v1.responses.logout_response import LogoutResponse
 
 
 class AuthController:
